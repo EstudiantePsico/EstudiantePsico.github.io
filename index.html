@@ -5,20 +5,121 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resúmenes de Facultad</title>
   <style>
-    body { font-family: sans-serif; margin: 2rem; background: #f5f5f5; }
-    h1 { color: #333; }
-    .resumen { background: white; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      background-color: #4a90e2;
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    header {
+      padding: 3rem 1rem;
+      background-color: #eaf1fb;
+      text-align: center;
+    }
+
+    header h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    .descripcion {
+      margin: 2rem auto;
+      max-width: 600px;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .imagen-principal {
+      max-width: 90%;
+      margin: 2rem auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    section {
+      padding: 2rem;
+    }
+
+    .resumen {
+      background: white;
+      padding: 1rem;
+      margin: 1rem auto;
+      border-radius: 8px;
+      max-width: 700px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .resumen h3 {
+      margin-top: 0;
+    }
   </style>
 </head>
 <body>
-  <h1>Mis resúmenes y apuntes</h1>
-  <div class="resumen">
-    <h2>Introducción a la Filosofia</h2>
-    <p>Resumen del primer parcial, basado en clase y libro. <a href="resumen-filosofia.pdf" download>Descargar PDF</a></p>
-  </div>
-  <div class="resumen">
-    <h2>Historia Argentina</h2>
-    <p>Resumen del segundo parcial. <a href="historia.pdf" download>Descargar PDF</a></p>
-  </div>
+
+  <!-- Menú de navegación -->
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#resumenes">Resúmenes</a>
+  </nav>
+
+  <!-- Sección de inicio -->
+  <header id="inicio">
+    <h1>Bienvenid@ a mi página de apuntes</h1>
+    <p>Todo el material de estudio en un solo lugar</p>
+    <div class="descripcion">
+      <p>En este sitio comparto mis resúmenes, apuntes y materiales de facultad organizados por materias. Podés usarlos para repasar, estudiar o completar tus notas. ¡Espero que te sirvan!</p>
+    </div>
+    <img class="imagen-principal" src="estudio.jpg" alt="Estudiando" />
+  </header>
+
+  <!-- Sección de resúmenes -->
+  <section id="resumenes">
+    <h2 style="text-align:center;">Resúmenes</h2>
+
+    <div class="resumen">
+      <h3>Introducción a la Filosofía</h3>
+      <p>Resumen del primer parcial. <a href="resumen-filosofia.pdf" download>Descargar PDF</a></p>
+    </div>
+
+    <div class="resumen">
+      <h3>Psicología 1</h3>
+      <p>Apuntes completos. <a href="psicologia1.pdf" download>Descargar PDF</a></p>
+    </div>
+
+    <div class="resumen">
+      <h3>Biología</h3>
+      <p>Resumen de los temas principales. <a href="biologia.pdf" download>Descargar PDF</a></p>
+    </div>
+
+    <div class="resumen">
+      <h3>Lógica</h3>
+      <p>Ejercicios resueltos y teoría. <a href="logica.pdf" download>Descargar PDF</a></p>
+    </div>
+
+    <div class="resumen">
+      <h3>Antropología</h3>
+      <p>Resumen general del cuatrimestre. <a href="antropologia.pdf" download>Descargar PDF</a></p>
+    </div>
+
+  </section>
+
 </body>
 </html>
