@@ -14,93 +14,139 @@
 
   <!-- Estilos -->
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      color: #333;
-      scroll-behavior: smooth;
-    }
+   <!-- Estilos -->
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    scroll-behavior: smooth;
+  }
 
-    nav {
-      background-color: #4a90e2;
-      padding: 1rem;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+  nav {
+    background-color: #4a90e2;
+    padding: 1rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
 
-    nav a {
-      color: white;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: bold;
-    }
+  nav a {
+    color: white;
+    margin: 0 1rem;
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-    /* Estilos para header con imagen y overlay */
-    header {
-      padding: 6rem 1rem;
-      background-image: url('OIP (26).jpeg');
-      background-size: cover;
-      background-position: center;
-      color: white;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-      text-align: center;
-    }
+  header {
+    padding: 6rem 1rem;
+    background-image: url('OIP (26).jpeg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  }
 
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.5); /* negro semitransparente */
-      padding: 3rem 1rem;
-      border-radius: 12px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* negro semitransparente */
+    padding: 3rem 1rem;
+    border-radius: 12px;
+  }
 
-    header h1 {
-      margin-bottom: 0.5rem;
-    }
+  header h1 {
+    margin-bottom: 0.5rem;
+  }
 
-    .descripcion {
-      margin: 2rem auto;
-      max-width: 600px;
-      font-size: 1.1rem;
-      text-align: center;
-      color: #eee;
-    }
+  .descripcion {
+    margin: 2rem auto;
+    max-width: 600px;
+    font-size: 1.1rem;
+    text-align: center;
+  }
 
-    section {
-      padding: 2rem;
-    }
+  .imagen-principal {
+    max-width: 90%;
+    margin: 2rem auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
 
-    details {
-      background: #ffffff;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      cursor: pointer;
-    }
+  section {
+    padding: 2rem;
+  }
 
-    summary {
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
+  details {
+    background: #ffffff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+  }
 
-    ul {
-      list-style: none;
-      padding-left: 1rem;
-    }
+  summary {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
 
-    ul li a {
-      text-decoration: none;
-      color: #0066cc;
-    }
+  ul {
+    list-style: none;
+    padding-left: 1rem;
+  }
 
-    ul li a:hover {
-      text-decoration: underline;
-    }
+  ul li a {
+    text-decoration: none;
+    color: #0066cc;
+  }
+
+  ul li a:hover {
+    text-decoration: underline;
+  }
+
+  /* Estilos para sección de playlists */
+  #playlists {
+    padding: 2rem;
+    background-color: #eef4fc;
+  }
+
+  .playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .playlist {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+
+  .playlist:hover {
+    transform: scale(1.03);
+  }
+
+  .playlist img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .playlist p {
+    margin: 0;
+    padding: 0.8rem;
+    font-weight: bold;
+    color: #333;
+  }
+
   </style>
 
 </head>
@@ -125,7 +171,27 @@
 
   <!-- Resúmenes -->
   <section id="resumenes">
-    <h2 style="text-align:center;">Resúmenes por materia</h2>
+   <section id="playlists">
+  <h2 style="text-align:center;">🎧 Playlists para estudiar</h2>
+  <div class="playlist-grid">
+    <!-- Una playlist de ejemplo -->
+    <div class="playlist">
+      <a href="https://open.spotify.com/playlist/5YKm5Zt0AUdKrlrvWzUV6l?si=2fed7b05cd14478a">
+        <img src="https://th.bing.com/th/id/OIP.svrNBD1VOluUksJS3Dn8_QHaHa?cb=iwp2&rs=1&pid=ImgDetMain">
+        <p>Concentración profunda</p>
+      </a>
+    </div>
+
+    <!-- Repetí con otras playlists -->
+    <div class="playlist">
+      <a href="https://open.spotify.com/playlist/yyyyyyyy" target="_blank">
+        <img src="https://i.scdn.co/image/ab67616d0000b273yyyyyyyy" alt="Playlist 2">
+        <p>Lo-fi para estudiar</p>
+      </a>
+    </div>
+  </div>
+</section>
+ <h2 style="text-align:center;">Resúmenes por materia</h2>
 
     <div class="materia">
       <details>
