@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timer de Estudio</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f2f2f2;
+      padding: 2rem;
+    }
+    h1 {
+      color: #333;
+    }
+    .timer {
+      font-size: 4rem;
+      margin: 2rem 0;
+    }
+    button {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+    }
+    #chartContainer {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>⏱️ Timer de Estudio</h1>
+  <div class="timer" id="display">00:00:00</div>
+  <button onclick="startTimer()">Iniciar</button>
+  <button onclick="pauseTimer()">Pausar</button>
+  <button onclick="stopTimer()">Terminar</button>
+
+  <div id="chartContainer">
+    <canvas id="studyChart"></canvas>
+  </div>
+
+  <script>
+    let timer;
+    let totalSeconds = 0;
+    let isRunning = false;
+
+    function updateDisplay() {
+      let hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+      let minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+      let seconds = String(totalSeconds % 60).padStart(2, '0');
+      document.getElementById('display').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    function startTimer() {
+      if (isRunning) return;
+      isRunning = true;
+      timer = setInterval(() => {
+        totalSeconds++;
+        updateDisplay();
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      isRunning = false;
+      clearInterval(timer);
+    }
+
+    function stopTimer() {
+      pauseTimer();
+      saveTodayStudyTime(totalSeconds);
+      totalSeconds = 0;
+      updateDisplay();
+      updateChart();
+    }
+
+    function getToday() {
+      return new Date().toISOString().split('T')[0];
+    }
+
+    function saveTodayStudyTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const key = getToday();
+      const current = parseInt(localStorage.getItem(key) || '0');
+      localStorage.setItem(key, current + minutes);
+    }
+
+    function getStudyData() {
+      const data = {};
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date();
+        d.setDate(d.getDate() - i);
+        const key = d.toISOString().split('T')[0];
+        data[key] = parseInt(localStorage.getItem(key) || '0');
+      }
+      return data;
+    }
+
+    function updateChart() {
+      const data = getStudyData();
+      chart.data.labels = Object.keys(data);
+      chart.data.datasets[0].data = Object.values(data);
+      chart.update();
+    }
+
+    const ctx = document.getElementById('studyChart').getContext('2d');
+    const chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [],
+        datasets: [{
+          label: 'Minutos de estudio',
+          data: [],
+          backgroundColor: '#4a90e2'
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Minutos'
+            }
+          }
+        }
+      }
+    });
+
+    updateChart();
+  </script>
+</body>
+</html>
