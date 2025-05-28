@@ -2,41 +2,108 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diccionario de Psicología</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    nav a { margin: 0 10px; text-decoration: none; }
-    section { margin-top: 40px; }
-    h2 { border-bottom: 1px solid #ccc; padding-bottom: 5px; }
-    article { margin-bottom: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    nav {
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    nav a {
+      margin: 0 0.5rem;
+      text-decoration: none;
+      color: #4a90e2;
+      font-weight: bold;
+    }
+
+    .buscador {
+      max-width: 600px;
+      margin: 2rem auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .buscador input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .termino {
+      background: white;
+      padding: 1rem;
+      margin: 1rem auto;
+      max-width: 700px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .termino h3 {
+      margin-top: 0;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Diccionario de Psicología</h1>
+    <p>Explorá y buscá definiciones de términos psicológicos</p>
+  </header>
+
   <nav>
     <a href="#A">A</a>
     <a href="#B">B</a>
     <a href="#C">C</a>
-    <!-- Agregá más letras según necesites -->
+    <!-- Agregá más letras -->
   </nav>
 
-  <section id="A">
-    <h2>A</h2>
-    <article>
+  <div class="buscador">
+    <input type="text" id="searchInput" placeholder="Buscar término...">
+  </div>
+
+  <section id="diccionario">
+    <div class="termino" data-letra="A">
       <h3>Abulia</h3>
-      <p>Falta de voluntad o energía para realizar actividades.</p>
-    </article>
-    <!-- Agregá más términos que comiencen con A -->
-  </section>
-
-  <section id="B">
-    <h2>B</h2>
-    <article>
+      <p>Falta de voluntad o motivación para iniciar actividades.</p>
+    </div>
+    <div class="termino" data-letra="B">
       <h3>Bulimia</h3>
-      <p>Trastorno alimentario caracterizado por episodios de ingesta excesiva seguidos de purgas.</p>
-    </article>
-    <!-- Agregá más términos que comiencen con B -->
+      <p>Trastorno alimentario caracterizado por atracones seguidos de purgas.</p>
+    </div>
+    <div class="termino" data-letra="C">
+      <h3>Conductismo</h3>
+      <p>Corriente psicológica que estudia el comportamiento observable.</p>
+    </div>
+    <!-- Más términos -->
   </section>
 
-  <!-- Continuá con más secciones por letra -->
+  <script>
+    const input = document.getElementById('searchInput');
+    const terminos = document.querySelectorAll('.termino');
+
+    input.addEventListener('input', () => {
+      const filtro = input.value.toLowerCase();
+      terminos.forEach(t => {
+        const texto = t.textContent.toLowerCase();
+        t.style.display = texto.includes(filtro) ? 'block' : 'none';
+      });
+    });
+  </script>
 </body>
 </html>
