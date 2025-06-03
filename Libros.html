@@ -52,6 +52,24 @@
       margin-top: 2rem;
       border: 1px solid #ccc;
     }
+    <div id="visor">
+  <button onclick="cerrarLibro()">✖</button>
+  <div id="lector"></div>
+</div>
+
+<script src="https://unpkg.com/epubjs/dist/epub.min.js"></script>
+<script>
+  function leerLibro(ruta) {
+    document.getElementById("visor").style.display = "flex";
+    var book = ePub(ruta);
+    book.renderTo("lector", { width: "100%", height: "100%" });
+  }
+  function cerrarLibro() {
+    document.getElementById("visor").style.display = "none";
+    document.getElementById("lector").innerHTML = "";
+  }
+</script>
+
   </style>
 </head>
 <body>
