@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lectura de libros</title>
   <script src="https://unpkg.com/epubjs/dist/epub.min.js"></script>
   <style>
@@ -12,17 +12,20 @@
       background: #f7f7f7;
       color: #333;
     }
+
     nav {
       background: #4a90e2;
       padding: 1rem;
       text-align: center;
     }
+
     nav a {
       color: white;
       margin: 0 1rem;
       text-decoration: none;
       font-weight: bold;
     }
+
     .libros {
       display: flex;
       flex-wrap: wrap;
@@ -30,38 +33,47 @@
       padding: 2rem;
       gap: 2rem;
     }
+
     .libro {
       width: 150px;
       text-align: center;
       cursor: pointer;
     }
+
     .libro img {
       width: 100%;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-    /* Estilos visor */
+
     #visor {
       display: none;
+      width: 100%;
+      height: 100vh;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
       background: white;
       z-index: 1000;
       flex-direction: column;
     }
-    #lector {
-      flex-grow: 1;
-      width: 100%;
-      height: 100%;
-    }
+
     #visor button {
-      align-self: flex-end;
-      margin: 10px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
       font-size: 1.5rem;
+      cursor: pointer;
       background: transparent;
       border: none;
-      cursor: pointer;
+      color: #333;
+    }
+
+    #lector {
+      width: 100%;
+      height: 100%;
+      margin-top: 40px;
+      flex-grow: 1;
     }
   </style>
 </head>
@@ -76,47 +88,33 @@
 
 <div class="libros">
   <div class="libro" onclick="leerLibro('Descartes-Discurso-del-metodo-Segunda-parte.epub')">
-    <img src="El-Discurso-del-Metodo.jpg" alt="Descartes">
+    <img src="El-Discurso-del-Metodo.jpg" alt="Descartes" />
     <p>Descartes - Filosofía</p>
   </div>
+  <!-- Puedes agregar más libros aquí con el mismo formato -->
 </div>
 
-<div id="visor" style="display:none; flex-direction: column; display: flex;">
+<div id="visor" style="display: flex;">
   <button onclick="cerrarLibro()">✖</button>
   <div id="lector"></div>
 </div>
 
 <script>
   let libroActual;
-  let rendition;
 
   function leerLibro(ruta) {
     document.getElementById("visor").style.display = "flex";
-
-    if (libroActual) {
-      libroActual.destroy();
-    }
-
     libroActual = ePub(ruta);
-    rendition = libroActual.renderTo("lector", {
-      width: "100%",
-      height: "100%"
-    });
-
-    rendition.display();
+    libroActual.renderTo("lector", { width: "100%", height: "100%" });
   }
 
   function cerrarLibro() {
     document.getElementById("visor").style.display = "none";
-    if (rendition) {
-      rendition.destroy();
-      rendition = null;
-    }
+    document.getElementById("lector").innerHTML = "";
     if (libroActual) {
       libroActual.destroy();
       libroActual = null;
     }
-    document.getElementById("lector").innerHTML = "";
   }
 </script>
 
